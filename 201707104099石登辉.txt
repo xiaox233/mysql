@@ -1,0 +1,107 @@
+mysql> use shopping;
+Database changed
+mysql> create table shopping1(
+    -> id int primary key not null auto_increment,
+    -> name varchar(11) not null,
+    -> num varchar(3) not null,
+    -> money varchar(5) not null);
+Query OK, 0 rows affected (0.13 sec)
+
+mysql> desc shopping1;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int(11)     | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(11) | NO   |     | NULL    |                |
+| num   | varchar(3)  | NO   |     | NULL    |                |
+| money | varchar(5)  | NO   |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> insert into shopping1(
+    -> name,num,money)
+    -> values('dongxi','2','200');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from shopping1;
++----+--------+-----+-------+
+| id | name   | num | money |
++----+--------+-----+-------+
+|  1 | dongxi | 2   | 200   |
++----+--------+-----+-------+
+1 row in set (0.00 sec)
+mysql> alter table shopping1 add love varchar(3);
+Query OK, 0 rows affected (0.09 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from shopping1;
++----+--------+-----+-------+------+
+| id | name   | num | money | love |
++----+--------+-----+-------+------+
+|  1 | dongxi | 2   | 200   | NULL |
++----+--------+-----+-------+------+
+1 row in set (0.00 sec)
+
+mysql> alter table shopping1 add remind varchar(3);
+Query OK, 0 rows affected (0.08 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table shopping1 add wish varchar(11);
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from shopping1;
++----+--------+-----+-------+------+--------+------+
+| id | name   | num | money | love | remind | wish |
++----+--------+-----+-------+------+--------+------+
+|  1 | dongxi | 2   | 200   | NULL | NULL   | NULL |
++----+--------+-----+-------+------+--------+------+
+1 row in set (0.00 sec)
+mysql> insert into shopping1(
+    -> name,num,money,love,remind,wish)
+    -> values('dongxi','2','200','xie','yes','chi');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from shopping1;
++----+--------+-----+-------+------+--------+------+
+| id | name   | num | money | love | remind | wish |
++----+--------+-----+-------+------+--------+------+
+|  1 | dongxi | 2   | 200   | NULL | NULL   | NULL |
+|  2 | dongxi | 2   | 200   | xie  | yes    | chi  |
++----+--------+-----+-------+------+--------+------+
+2 rows in set (0.00 sec)
+mysql> update shopping1 set love='bao',remind='yes',wish='he' where id=1;
+Query OK, 1 row affected (0.10 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from shopping1;
++----+--------+-----+-------+------+--------+------+
+| id | name   | num | money | love | remind | wish |
++----+--------+-----+-------+------+--------+------+
+|  1 | dongxi | 2   | 200   | bao  | yes    | he   |
+|  2 | dongxi | 2   | 200   | xie  | yes    | chi  |
++----+--------+-----+-------+------+--------+------+
+2 rows in set (0.00 sec)
+
+mysql> update shopping1 set wish='wan' where id=1;
+Query OK, 1 row affected (0.08 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+mysql> select * from shopping1;
++----+--------+-----+-------+------+--------+------+
+| id | name   | num | money | love | remind | wish |
++----+--------+-----+-------+------+--------+------+
+|  1 | dongxi | 2   | 200   | bao  | yes    | wan  |
+|  2 | dongxi | 2   | 200   | xie  | yes    | chi  |
++----+--------+-----+-------+------+--------+------+
+2 rows in set (0.00 sec)
+
+mysql> delete from shopping1 where id=1;
+Query OK, 1 row affected (0.10 sec)
+
+mysql> select * from shopping1;
++----+--------+-----+-------+------+--------+------+
+| id | name   | num | money | love | remind | wish |
++----+--------+-----+-------+------+--------+------+
+|  2 | dongxi | 2   | 200   | xie  | yes    | chi  |
++----+--------+-----+-------+------+--------+------+
+1 row in set (0.00 sec)
