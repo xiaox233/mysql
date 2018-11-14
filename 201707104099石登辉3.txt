@@ -1,0 +1,55 @@
+mysql> create table collect（yonghu varchar（11）not null unique，id int primary key auto_increment，sthname varchar（11）not null）;
+查询OK，0行受影响（0.13秒）
+
+mysql> select * from collect;
+空集（0.00秒）
+
+mysql> desc collect;
++ --------- + ------------- + ------ + ------ + --------- +  - -------------- +
+| 领域| 输入| 空| 钥匙| 默认| 额外的|
++ --------- + ------------- + ------ + ------ + --------- +  - -------------- +
+| yonghu | varchar（11）| 没有| UNI | NULL | |
+| id | int（11）| 没有| PRI | NULL | auto_increment |
+| sthname | varchar（11）| 没有| | NULL | |
++ --------- + ------------- + ------ + ------ + --------- +  - -------------- +
+3行（0.00秒）
+
+mysql> alter table collect add collection set（'yes'，'no'）;
+查询OK，0行受影响（0.13秒）
+记录：0重复：0警告：0
+
+mysql> select * from collect;
+空集（0.00秒）
+
+mysql> desc collect;
++ ------------ + ----------------- + ------ + ----- + ----- ---- + ---------------- +
+| 领域| 输入| 空| 钥匙| 默认| 额外的|
++ ------------ + ----------------- + ------ + ----- + ----- ---- + ---------------- +
+| yonghu | varchar（11）| 没有| UNI | NULL | |
+| id | int（11）| 没有| PRI | NULL | auto_increment |
+| sthname | varchar（11）| 没有| | NULL | |
+| 收藏| 设置（'是'，'不'）| 是的| | NULL | |
++ ------------ + ----------------- + ------ + ----- + ----- ---- + ---------------- +
+4行（0.00秒）
+
+mysql> insert into collect（yonghu，sthname，collection）values（'usterid'，'xie'，'yes'），（''，'bao'，'no'）
+    - >;
+查询正常，2行受影响（0.03秒）
+记录：2个重复：0个警告：0
+
+mysql> select * from collect;
++ --------- + ---- + --------- + ------------ +
+| yonghu | id | sthname | 收藏|
++ --------- + ---- + --------- + ------------ +
+| usterid | 1 | 谢| 是的|
+| | 2 | 宝| 没有|
++ --------- + ---- + --------- + ------------ +
+2行（0.01秒）
+
+mysql> select * from collect where sthname ='xie';
++ --------- + ---- + --------- + ------------ +
+| yonghu | id | sthname | 收藏|
++ --------- + ---- + --------- + ------------ +
+| usterid | 1 | 谢| 是的|
++ --------- + ---- + --------- + ------------ +
+1排（0.00秒）
